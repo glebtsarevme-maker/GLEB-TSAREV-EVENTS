@@ -144,14 +144,31 @@ export default function App() {
             </button>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <button 
-            id="mobile-menu-trigger"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-white hover:text-blue-400 transition-colors cursor-pointer"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile Language Selector & Menu Trigger */}
+          <div className="flex md:hidden items-center gap-2">
+            {/* Mobile Header Language Selector */}
+            <div className="flex items-center gap-1 bg-white/5 px-1.5 py-0.5 rounded border border-white/5 text-[10px] font-mono tracking-widest font-bold">
+              {(["EN", "LT", "RU"] as const).map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => setLanguage(lang)}
+                  className={`px-1.5 py-0.5 rounded transition-colors cursor-pointer text-[10px] font-bold font-mono ${
+                    language === lang ? "text-[#60A5FA] bg-blue-500/10" : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
+
+            <button 
+              id="mobile-menu-trigger"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-white hover:text-blue-400 transition-colors cursor-pointer pointer-events-auto"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </motion.header>
 

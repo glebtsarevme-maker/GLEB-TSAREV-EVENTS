@@ -340,23 +340,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       // Ignore localStorage read errors in restricted contexts
     }
 
-    // 2. Second choice: Auto-detect based on region/browser locale!
-    try {
-      const locales = navigator.languages || [navigator.language];
-      for (const locale of locales) {
-        const cleanLocale = locale.toLowerCase();
-        if (cleanLocale.startsWith("lt")) {
-          return "LT";
-        }
-        if (cleanLocale.startsWith("ru") || cleanLocale.startsWith("be") || cleanLocale.startsWith("uk") || cleanLocale.startsWith("kk")) {
-          return "RU";
-        }
-      }
-    } catch (e) {
-      // Ignore navigator errors
-    }
-
-    // Default fallback is English
+    // Default fallback is English (disabled automatic browser language detection)
     return "EN";
   });
 
