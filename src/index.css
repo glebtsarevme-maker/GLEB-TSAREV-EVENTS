@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+
+  /* Custom Luxury Color Palette */
+  --color-illusion-black: #050505;
+  --color-illusion-navy: #08111F;
+  --color-illusion-midnight: #0D1A2F;
+  --color-electric-blue: #2563EB;
+  --color-electric-light: #60A5FA;
+}
+
+/* Custom Scrollbar for premium smooth scrolling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #050505;
+}
+
+body {
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Premium gradient and glass effects */
+.radial-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, rgba(8, 17, 31, 0) 70%);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+}
+
+.card-blur {
+  background: rgba(13, 26, 47, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-blur-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-blur-hover:hover {
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+}
