@@ -32,7 +32,7 @@ export default function App() {
   const bookingRef = useRef<HTMLDivElement>(null);
 
   // Safe import for the portrait using import.meta.url
-  const glebPortrait = new URL("./assets/images/gleb_portrait_1780588373623.png", import.meta.url).href;
+  const glebPortrait = new URL("./assets/images/regenerated_image_1782918549283.jpg", import.meta.url).href;
 
   const EXPERIENCE_DATA: Experience[] = [
     {
