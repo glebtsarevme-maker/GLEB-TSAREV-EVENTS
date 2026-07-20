@@ -518,8 +518,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 md:p-8"
-            onClick={() => setIsPromoOpen(false)}
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-4 md:p-8"
           >
             {/* Close button at top-right of screen */}
             <button
@@ -535,16 +534,26 @@ export default function App() {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: 20, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-w-4xl aspect-video bg-zinc-950 rounded-xl overflow-hidden border border-white/10 shadow-2xl"
+              className="relative w-full max-w-4xl flex flex-col items-center gap-6"
               onClick={(e) => e.stopPropagation()}
             >
-              <iframe
-                src="https://www.youtube.com/embed/VzS8mJfH-xU?autoplay=1&modestbranding=1&rel=0&vq=hd1080"
-                title="Gleb Tsarev Magic Promo"
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+              <div className="relative w-full aspect-video bg-zinc-950 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                <iframe
+                  src="https://www.youtube.com/embed/VzS8mJfH-xU?autoplay=1&modestbranding=1&rel=0&vq=hd1080"
+                  title="Gleb Tsarev Magic Promo"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* Explicit Back to Main Page button below player */}
+              <button
+                onClick={() => setIsPromoOpen(false)}
+                className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-blue-500/50 bg-black/60 hover:bg-white/5 text-white font-semibold tracking-[4px] uppercase text-[10px] rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+              >
+                <span>{t("btnToMainPage")}</span>
+              </button>
             </motion.div>
           </motion.div>
         )}

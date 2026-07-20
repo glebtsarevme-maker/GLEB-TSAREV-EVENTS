@@ -17,6 +17,7 @@ export const translations = {
     heroSubtitle: "Modern Illusion Experiences",
     btnBookAnEvent: "BOOK A SHOW",
     btnWatchPromo: "WATCH PROMO",
+    btnToMainPage: "BACK TO MAIN PAGE",
     discover: "01 / DISCOVER",
     
     // About
@@ -123,6 +124,7 @@ export const translations = {
     heroSubtitle: "Šiuolaikinės iliuzijos patirtys",
     btnBookAnEvent: "UŽSAKYTI PASIRODYMĄ",
     btnWatchPromo: "ŽIŪRĖTI PROMO",
+    btnToMainPage: "Į PAGRINDINĮ",
     discover: "01 / ĮŽANGA",
     
     // About
@@ -229,6 +231,7 @@ export const translations = {
     heroSubtitle: "Современные иллюзионные шоу",
     btnBookAnEvent: "ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ",
     btnWatchPromo: "СМОТРЕТЬ ПРОМО",
+    btnToMainPage: "НА ГЛАВНУЮ",
     discover: "01 / УЗНАТЬ БОЛЬШЕ",
     
     // About
