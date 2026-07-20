@@ -16,6 +16,7 @@ export const translations = {
     worldChampion: "WORLD CHAMPION OF MAGIC",
     heroSubtitle: "Modern Illusion Experiences",
     btnBookAnEvent: "BOOK A SHOW",
+    btnWatchPromo: "WATCH PROMO",
     discover: "01 / DISCOVER",
     
     // About
@@ -121,6 +122,7 @@ export const translations = {
     worldChampion: "PASAULIO MAGIJOS ČEMPIONAS",
     heroSubtitle: "Šiuolaikinės iliuzijos patirtys",
     btnBookAnEvent: "UŽSAKYTI PASIRODYMĄ",
+    btnWatchPromo: "ŽIŪRĖTI PROMO",
     discover: "01 / ĮŽANGA",
     
     // About
@@ -226,6 +228,7 @@ export const translations = {
     worldChampion: "ЧЕМПИОН МИРА ПО МАГИИ",
     heroSubtitle: "Современные иллюзионные шоу",
     btnBookAnEvent: "ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ",
+    btnWatchPromo: "СМОТРЕТЬ ПРОМО",
     discover: "01 / УЗНАТЬ БОЛЬШЕ",
     
     // About

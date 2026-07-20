@@ -12,7 +12,8 @@ import {
   Instagram, 
   Menu, 
   X,
-  ShieldAlert
+  ShieldAlert,
+  Play
 } from "lucide-react";
 
 import { Experience } from "./types";
@@ -26,13 +27,27 @@ export default function App() {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedPresetType, setSelectedPresetType] = useState<string>("");
+  const [isPromoOpen, setIsPromoOpen] = useState(false);
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const experiencesRef = useRef<HTMLDivElement>(null);
   const bookingRef = useRef<HTMLDivElement>(null);
 
+  React.useEffect(() => {
+    const handleUrlCheck = () => {
+      const hash = window.location.hash;
+      const params = new URLSearchParams(window.location.search);
+      if (hash === "#promo" || params.has("promo")) {
+        setIsPromoOpen(true);
+      }
+    };
+    handleUrlCheck();
+    window.addEventListener("hashchange", handleUrlCheck);
+    return () => window.removeEventListener("hashchange", handleUrlCheck);
+  }, []);
+
   // Safe import for the portrait using import.meta.url
-  const glebPortrait = new URL("./assets/images/regenerated_image_1782918549283.jpg", import.meta.url).href;
+  const glebPortrait = new URL("./assets/images/regenerated_image_1782918612668.jpg", import.meta.url).href;
 
   const EXPERIENCE_DATA: Experience[] = [
     {
@@ -115,6 +130,13 @@ export default function App() {
               className="hover:text-white transition-colors duration-200 cursor-pointer flex items-center gap-1 group"
             >
               <span className="text-zinc-650 group-hover:text-blue-400 font-bold mr-1">03/</span> {t("navBooking")}
+            </button>
+            <button 
+              onClick={() => setIsPromoOpen(true)}
+              className="hover:text-white text-blue-400 transition-colors duration-200 cursor-pointer flex items-center gap-1 group font-semibold uppercase text-[11px] tracking-wider"
+            >
+              <Play className="w-3 h-3 text-blue-400 fill-blue-400/20 mr-1 animate-pulse" />
+              {t("btnWatchPromo")}
             </button>
           </nav>
 
@@ -203,6 +225,15 @@ export default function App() {
               >
                 <span className="text-xs font-mono text-zinc-600 font-bold">03/</span> {t("navBooking")}
               </button>
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsPromoOpen(true);
+                }}
+                className="text-2xl text-blue-400 hover:text-blue-300 uppercase tracking-wider text-left flex items-baseline gap-3"
+              >
+                <span className="text-xs font-mono text-blue-500 font-bold">04/</span> {t("btnWatchPromo")}
+              </button>
 
               <div className="pt-8 border-t border-white/5 flex flex-col gap-4">
                 {/* Mobile Language Selector */}
@@ -273,15 +304,24 @@ export default function App() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-12"
+            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 max-w-md sm:max-w-none"
           >
             <button
               id="hero-book-btn"
               onClick={() => bookingRef.current?.scrollIntoView({ behavior: "smooth" })}
-              className="inline-flex items-center gap-2.5 px-10 py-4 bg-white hover:bg-neutral-200 text-black font-semibold tracking-[4px] uppercase text-xs rounded shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-10 py-4 bg-white hover:bg-neutral-200 text-black font-semibold tracking-[4px] uppercase text-xs rounded shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
             >
               <span>{t("btnBookAnEvent")}</span>
               <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+
+            <button
+              id="hero-promo-btn"
+              onClick={() => setIsPromoOpen(true)}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-10 py-4 border border-white/10 hover:border-blue-500/50 bg-black/40 hover:bg-white/5 text-white font-semibold tracking-[4px] uppercase text-xs rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+            >
+              <Play className="w-3.5 h-3.5 text-blue-400 fill-blue-400/20 mr-1.5" />
+              <span>{t("btnWatchPromo")}</span>
             </button>
           </motion.div>
         </div>
@@ -470,6 +510,45 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* PROMO MODAL OVERLAY */}
+      <AnimatePresence>
+        {isPromoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 md:p-8"
+            onClick={() => setIsPromoOpen(false)}
+          >
+            {/* Close button at top-right of screen */}
+            <button
+              onClick={() => setIsPromoOpen(false)}
+              className="absolute top-6 right-6 p-3 text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors cursor-pointer z-51 border border-white/10"
+              aria-label="Close Promo Video"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.95, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative w-full max-w-4xl aspect-video bg-zinc-950 rounded-xl overflow-hidden border border-white/10 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/VzS8mJfH-xU?autoplay=1&modestbranding=1&rel=0"
+                title="Gleb Tsarev Magic Promo"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
