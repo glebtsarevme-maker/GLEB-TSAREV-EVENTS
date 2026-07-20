@@ -539,7 +539,7 @@ export default function App() {
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
-                src="https://www.youtube.com/embed/VzS8mJfH-xU?autoplay=1&modestbranding=1&rel=0"
+                src="https://www.youtube.com/embed/VzS8mJfH-xU?autoplay=1&modestbranding=1&rel=0&vq=hd1080"
                 title="Gleb Tsarev Magic Promo"
                 className="w-full h-full border-0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
